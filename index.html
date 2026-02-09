@@ -4,6 +4,13 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Waterkloof Ridge Dog Daycare</title>
+<meta name="description" content="Dog daycare and boarding in Waterkloof Ridge, Pretoria. Safe, fun, and loving care for your furry friend. Day care R110/day, boarding R200/night. Open 7 days a week.">
+<meta property="og:title" content="Waterkloof Ridge Dog Daycare">
+<meta property="og:description" content="Safe, fun, and loving dog daycare and boarding in Waterkloof Ridge, Pretoria. Open 7 days a week.">
+<meta property="og:image" content="images/logo.jpg">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://waterkloofdogdaycare.co.za">
+<link rel="icon" type="image/jpeg" href="images/logo.jpg">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
@@ -69,6 +76,18 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(44,24,16,0.08); }
 .nav-links a:hover { background: var(--blue-light); color: var(--dark); }
 .nav-links a.cta-link { background: var(--orange); color: white; }
 .nav-links a.cta-link:hover { background: var(--orange-warm); transform: translateY(-1px); }
+.hamburger {
+  display: none; background: none; border: none; cursor: pointer;
+  width: 36px; height: 36px; padding: 4px;
+  flex-direction: column; justify-content: center; gap: 5px;
+}
+.hamburger span {
+  display: block; height: 2.5px; background: var(--dark);
+  border-radius: 2px; transition: all 0.3s;
+}
+.hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.hamburger.active span:nth-child(2) { opacity: 0; }
+.hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
 /* ===== HERO ===== */
 .hero {
@@ -157,9 +176,9 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(44,24,16,0.08); }
   position: absolute; font-size: 1.6rem; opacity: 0.12;
   animation: pawBounce 3s ease-in-out infinite;
 }
-.paw:nth-child(3) { top: -20px; right: -40px; transform: rotate(25deg); animation-delay: 0.5s; }
-.paw:nth-child(4) { bottom: -10px; left: -50px; transform: rotate(-15deg); animation-delay: 1s; }
-.paw:nth-child(5) { top: 50%; right: -60px; transform: rotate(40deg); animation-delay: 1.5s; }
+.paw:nth-child(3) { top: -20px; right: -40px; --r: 25deg; animation-delay: 0.5s; }
+.paw:nth-child(4) { bottom: -10px; left: -50px; --r: -15deg; animation-delay: 1s; }
+.paw:nth-child(5) { top: 50%; right: -60px; --r: 40deg; animation-delay: 1.5s; }
 @keyframes pawBounce {
   0%, 100% { transform: translateY(0) rotate(var(--r, 25deg)); }
   50% { transform: translateY(-6px) rotate(var(--r, 25deg)); }
@@ -376,7 +395,17 @@ footer {
   .pricing-grid { grid-template-columns: 1fr; max-width: 400px; }
   .gallery-grid { columns: 2; }
   .nav-brand span { display: none; }
-  .nav-links a { padding: 8px 12px; font-size: 0.85rem; }
+  .hamburger { display: flex; }
+  .nav-links {
+    display: none; position: absolute; top: 100%; left: 0; right: 0;
+    flex-direction: column; background: rgba(255,248,240,0.97);
+    backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px);
+    padding: 12px 24px 20px; gap: 4px;
+    border-bottom: 2px solid rgba(212,136,43,0.15);
+    box-shadow: 0 8px 30px rgba(44,24,16,0.08);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links a { padding: 12px 16px; font-size: 0.95rem; border-radius: 12px; }
   .contact-details { flex-direction: column; align-items: center; }
   section { padding: 70px 20px; }
 }
@@ -401,6 +430,9 @@ footer {
       <img src="images/logo.jpg" alt="Waterkloof Ridge Dog Daycare Logo">
       <span>Waterkloof Ridge Dog Daycare</span>
     </a>
+    <button class="hamburger" aria-label="Toggle menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
+      <span></span><span></span><span></span>
+    </button>
     <div class="nav-links">
       <a href="#pricing">Pricing</a>
       <a href="#gallery">Gallery</a>
@@ -470,7 +502,7 @@ footer {
         <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>Rest time included</li>
       </ul>
     </div>
-    <div class="pricing-card boarding fade-up" style="animation-delay:0.15s">
+    <div class="pricing-card boarding fade-up" style="transition-delay:0.15s">
       <div class="pricing-icon">🌙</div>
       <h3>Boarding</h3>
       <p style="color:var(--dark-soft);font-size:0.92rem;">Overnight stays with all the comforts of home.</p>
@@ -508,21 +540,21 @@ footer {
     <p>Some of our happy guests enjoying their time with us!</p>
   </div>
   <div class="gallery-grid fade-up">
-    <div class="gallery-item" onclick="openLightbox(0)"><img src="images/gallery-05.jpg" alt="Happy dogs at daycare" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(1)"><img src="images/gallery-08.jpg" alt="Dog portrait" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(2)"><img src="images/gallery-02.jpg" alt="Dogs playing together" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(3)"><img src="images/gallery-11.jpg" alt="Dog with toy" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(4)"><img src="images/gallery-03.jpg" alt="Group of dogs" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(5)"><img src="images/gallery-15.jpg" alt="Dogs in garden" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(6)"><img src="images/gallery-07.jpg" alt="Dogs at the facility" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(7)"><img src="images/gallery-13.jpg" alt="Birthday celebration" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(8)"><img src="images/gallery-12.jpg" alt="Dogs on the lawn" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(9)"><img src="images/gallery-14.jpg" alt="Dogs sitting" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(10)"><img src="images/gallery-10.jpg" alt="Dog close-up" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(11)"><img src="images/gallery-06.jpg" alt="Dogs playing ball" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(12)"><img src="images/gallery-01.jpg" alt="Dogs in the yard" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(13)"><img src="images/gallery-09.jpg" alt="Dogs at the facility" loading="lazy"></div>
-    <div class="gallery-item" onclick="openLightbox(14)"><img src="images/gallery-04.jpg" alt="Dog portrait" loading="lazy"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(0)" onkeydown="if(event.key==='Enter')openLightbox(0)"><img src="images/gallery-05.jpg" alt="Happy dogs at daycare" loading="lazy" width="800" height="600"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(1)" onkeydown="if(event.key==='Enter')openLightbox(1)"><img src="images/gallery-08.jpg" alt="Dog portrait" loading="lazy" width="600" height="800"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(2)" onkeydown="if(event.key==='Enter')openLightbox(2)"><img src="images/gallery-02.jpg" alt="Dogs playing together" loading="lazy" width="600" height="800"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(3)" onkeydown="if(event.key==='Enter')openLightbox(3)"><img src="images/gallery-11.jpg" alt="Dog with toy" loading="lazy" width="800" height="600"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(4)" onkeydown="if(event.key==='Enter')openLightbox(4)"><img src="images/gallery-03.jpg" alt="Group of dogs" loading="lazy" width="800" height="600"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(5)" onkeydown="if(event.key==='Enter')openLightbox(5)"><img src="images/gallery-15.jpg" alt="Dogs in garden" loading="lazy" width="600" height="800"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(6)" onkeydown="if(event.key==='Enter')openLightbox(6)"><img src="images/gallery-07.jpg" alt="Dogs at the facility" loading="lazy" width="600" height="800"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(7)" onkeydown="if(event.key==='Enter')openLightbox(7)"><img src="images/gallery-13.jpg" alt="Birthday celebration" loading="lazy" width="600" height="800"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(8)" onkeydown="if(event.key==='Enter')openLightbox(8)"><img src="images/gallery-12.jpg" alt="Dogs on the lawn" loading="lazy" width="600" height="800"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(9)" onkeydown="if(event.key==='Enter')openLightbox(9)"><img src="images/gallery-14.jpg" alt="Dogs sitting" loading="lazy" width="800" height="697"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(10)" onkeydown="if(event.key==='Enter')openLightbox(10)"><img src="images/gallery-10.jpg" alt="Dog close-up" loading="lazy" width="600" height="800"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(11)" onkeydown="if(event.key==='Enter')openLightbox(11)"><img src="images/gallery-06.jpg" alt="Dogs playing ball" loading="lazy" width="600" height="800"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(12)" onkeydown="if(event.key==='Enter')openLightbox(12)"><img src="images/gallery-01.jpg" alt="Dogs in the yard" loading="lazy" width="508" height="800"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(13)" onkeydown="if(event.key==='Enter')openLightbox(13)"><img src="images/gallery-09.jpg" alt="Dogs at the facility" loading="lazy" width="800" height="600"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(14)" onkeydown="if(event.key==='Enter')openLightbox(14)"><img src="images/gallery-04.jpg" alt="Dog portrait" loading="lazy" width="600" height="800"></div>
   </div>
 </section>
 
@@ -577,6 +609,14 @@ footer {
 const nav = document.getElementById('navbar');
 window.addEventListener('scroll', () => {
   nav.classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Close mobile menu on nav link click
+document.querySelectorAll('.nav-links a').forEach(link => {
+  link.addEventListener('click', () => {
+    document.querySelector('.hamburger').classList.remove('active');
+    document.querySelector('.nav-links').classList.remove('open');
+  });
 });
 
 // Scroll animations
