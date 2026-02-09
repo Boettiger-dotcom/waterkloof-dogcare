@@ -213,7 +213,9 @@ section { padding: 70px 24px; }
   text-align: center; border: 3px solid rgba(44,24,16,0.12);
   box-shadow: 0 8px 40px rgba(44,24,16,0.06);
   transition: all 0.35s; position: relative; overflow: hidden;
+  display: flex; flex-direction: column; align-items: center; height: 100%;
 }
+.pricing-card .features { margin-top: auto; }
 .pricing-card::before { display: none; }
 .pricing-card.daycare { border-color: var(--blue); }
 .pricing-card.boarding { border-color: var(--orange); }
@@ -482,7 +484,7 @@ footer {
   </div>
   <div class="pricing-grid">
     <div class="pricing-card daycare fade-up">
-      <div class="pricing-icon">🌞</div>
+      <div class="pricing-icon">🐕</div>
       <h3>Day Care</h3>
       <p style="color:var(--dark-soft);font-size:0.92rem;">A full day of supervised play, socialisation, and fun.</p>
       <div class="price">R110</div>
@@ -494,7 +496,7 @@ footer {
       </ul>
     </div>
     <div class="pricing-card boarding fade-up" style="transition-delay:0.15s">
-      <div class="pricing-icon">🌙</div>
+      <div class="pricing-icon">🐾</div>
       <h3>Boarding</h3>
       <p style="color:var(--dark-soft);font-size:0.92rem;">Overnight stays with all the comforts of home.</p>
       <div class="price">R200</div>
