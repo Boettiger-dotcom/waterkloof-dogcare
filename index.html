@@ -113,6 +113,7 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(44,24,16,0.08); }
   display: flex; align-items: center; gap: 12px;
   text-decoration: none; color: var(--dark);
 }
+.nav-brand picture { display: flex; }
 .nav-brand img {
   width: 48px; height: 48px; border-radius: 14px;
   border: 2px solid var(--orange-light);
@@ -334,6 +335,7 @@ section { padding: 70px 24px; }
   transform: translateY(-4px);
   box-shadow: 0 12px 36px rgba(44,24,16,0.14);
 }
+.gallery-item picture { display: block; }
 .gallery-item img {
   width: 100%; height: auto; display: block;
   transition: transform 0.4s;
@@ -487,7 +489,7 @@ footer {
 <nav id="navbar">
   <div class="nav-inner">
     <a href="#" class="nav-brand">
-      <img src="images/logo.jpg" alt="Waterkloof Ridge Dog Daycare Logo">
+      <picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.jpg" alt="Waterkloof Ridge Dog Daycare Logo"></picture>
       <span>Waterkloof Ridge Dog Daycare</span>
     </a>
     <button class="hamburger" aria-label="Toggle menu" onclick="this.classList.toggle('active');document.querySelector('.nav-links').classList.toggle('open')">
@@ -522,7 +524,7 @@ footer {
     <div class="hero-visual">
       <div class="logo-showcase">
         <div class="logo-bg-circle"></div>
-        <img src="images/logo.jpg" alt="Waterkloof Ridge Dog Daycare">
+        <picture><source srcset="images/logo.webp" type="image/webp"><img src="images/logo.jpg" alt="Waterkloof Ridge Dog Daycare"></picture>
         <span class="paw">🐾</span>
         <span class="paw">🐾</span>
         <span class="paw">🐾</span>
@@ -585,21 +587,21 @@ footer {
     <p>Some of our happy guests enjoying their time with us!</p>
   </div>
   <div class="gallery-grid fade-up">
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(0)" onkeydown="if(event.key==='Enter')openLightbox(0)"><img src="images/gallery-05.jpg" alt="Golden retriever, German Shepherd, and border collie with tennis ball at Waterkloof Ridge Dog Daycare" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(1)" onkeydown="if(event.key==='Enter')openLightbox(1)"><img src="images/gallery-08.jpg" alt="Close-up portrait of smiling white Swiss Shepherd at Waterkloof Ridge Dog Daycare" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(2)" onkeydown="if(event.key==='Enter')openLightbox(2)"><img src="images/gallery-02.jpg" alt="Group of cattle dogs, border collie, and golden retriever playing on garden path at dog daycare in Pretoria" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(3)" onkeydown="if(event.key==='Enter')openLightbox(3)"><img src="images/gallery-11.jpg" alt="Dogs with tennis balls on grass including Saint Bernard and golden retrievers at Waterkloof Ridge daycare" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(4)" onkeydown="if(event.key==='Enter')openLightbox(4)"><img src="images/gallery-03.jpg" alt="Seven dogs including white Swiss Shepherd, husky, and Labrador gathered on brick patio at Waterkloof Ridge" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(5)" onkeydown="if(event.key==='Enter')openLightbox(5)"><img src="images/gallery-15.jpg" alt="Saint Bernard and white Swiss Shepherd standing under leafy plants at dog boarding in Waterkloof Ridge" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(6)" onkeydown="if(event.key==='Enter')openLightbox(6)"><img src="images/gallery-07.jpg" alt="German Shepherd, white Swiss Shepherd, cattle dog, and Jack Russell on patio at Waterkloof Ridge Dog Daycare" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(7)" onkeydown="if(event.key==='Enter')openLightbox(7)"><img src="images/gallery-13.jpg" alt="Border Collie mix wearing festive reindeer antlers on grass at Waterkloof Ridge Dog Daycare" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(8)" onkeydown="if(event.key==='Enter')openLightbox(8)"><img src="images/gallery-12.jpg" alt="Dogs celebrating birthday with chalkboard sign and tennis balls at Waterkloof Ridge Dog Daycare" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(9)" onkeydown="if(event.key==='Enter')openLightbox(9)"><img src="images/gallery-14.jpg" alt="Vizsla, German Shorthaired Pointer, and Staffy sitting on grass at dog daycare in Pretoria" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(10)" onkeydown="if(event.key==='Enter')openLightbox(10)"><img src="images/gallery-10.jpg" alt="German Shepherd close-up holding rubber chicken toy at Waterkloof Ridge Dog Daycare" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(11)" onkeydown="if(event.key==='Enter')openLightbox(11)"><img src="images/gallery-06.jpg" alt="Dogs playing with rugby ball on covered patio at Waterkloof Ridge Dog Daycare Pretoria" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(12)" onkeydown="if(event.key==='Enter')openLightbox(12)"><img src="images/gallery-01.jpg" alt="Husky and tan mixed breed dog on green lawn in fenced garden at Waterkloof Ridge Dog Daycare" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(13)" onkeydown="if(event.key==='Enter')openLightbox(13)"><img src="images/gallery-09.jpg" alt="Dogs in secure fenced play area with lush garden at Waterkloof Ridge dog boarding" loading="lazy"></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(14)" onkeydown="if(event.key==='Enter')openLightbox(14)"><img src="images/gallery-04.jpg" alt="Friendly Labrador and mixed breed dogs greeting the camera at dog daycare in Waterkloof Ridge Pretoria" loading="lazy"></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(0)" onkeydown="if(event.key==='Enter')openLightbox(0)"><picture><source srcset="images/gallery-05.webp" type="image/webp"><img src="images/gallery-05.jpg" alt="Golden retriever, German Shepherd, and border collie with tennis ball at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(1)" onkeydown="if(event.key==='Enter')openLightbox(1)"><picture><source srcset="images/gallery-08.webp" type="image/webp"><img src="images/gallery-08.jpg" alt="Close-up portrait of smiling white Swiss Shepherd at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(2)" onkeydown="if(event.key==='Enter')openLightbox(2)"><picture><source srcset="images/gallery-02.webp" type="image/webp"><img src="images/gallery-02.jpg" alt="Group of cattle dogs, border collie, and golden retriever playing on garden path at dog daycare in Pretoria" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(3)" onkeydown="if(event.key==='Enter')openLightbox(3)"><picture><source srcset="images/gallery-11.webp" type="image/webp"><img src="images/gallery-11.jpg" alt="Dogs with tennis balls on grass including Saint Bernard and golden retrievers at Waterkloof Ridge daycare" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(4)" onkeydown="if(event.key==='Enter')openLightbox(4)"><picture><source srcset="images/gallery-03.webp" type="image/webp"><img src="images/gallery-03.jpg" alt="Seven dogs including white Swiss Shepherd, husky, and Labrador gathered on brick patio at Waterkloof Ridge" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(5)" onkeydown="if(event.key==='Enter')openLightbox(5)"><picture><source srcset="images/gallery-15.webp" type="image/webp"><img src="images/gallery-15.jpg" alt="Saint Bernard and white Swiss Shepherd standing under leafy plants at dog boarding in Waterkloof Ridge" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(6)" onkeydown="if(event.key==='Enter')openLightbox(6)"><picture><source srcset="images/gallery-07.webp" type="image/webp"><img src="images/gallery-07.jpg" alt="German Shepherd, white Swiss Shepherd, cattle dog, and Jack Russell on patio at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(7)" onkeydown="if(event.key==='Enter')openLightbox(7)"><picture><source srcset="images/gallery-13.webp" type="image/webp"><img src="images/gallery-13.jpg" alt="Border Collie mix wearing festive reindeer antlers on grass at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(8)" onkeydown="if(event.key==='Enter')openLightbox(8)"><picture><source srcset="images/gallery-12.webp" type="image/webp"><img src="images/gallery-12.jpg" alt="Dogs celebrating birthday with chalkboard sign and tennis balls at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(9)" onkeydown="if(event.key==='Enter')openLightbox(9)"><picture><source srcset="images/gallery-14.webp" type="image/webp"><img src="images/gallery-14.jpg" alt="Vizsla, German Shorthaired Pointer, and Staffy sitting on grass at dog daycare in Pretoria" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(10)" onkeydown="if(event.key==='Enter')openLightbox(10)"><picture><source srcset="images/gallery-10.webp" type="image/webp"><img src="images/gallery-10.jpg" alt="German Shepherd close-up holding rubber chicken toy at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(11)" onkeydown="if(event.key==='Enter')openLightbox(11)"><picture><source srcset="images/gallery-06.webp" type="image/webp"><img src="images/gallery-06.jpg" alt="Dogs playing with rugby ball on covered patio at Waterkloof Ridge Dog Daycare Pretoria" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(12)" onkeydown="if(event.key==='Enter')openLightbox(12)"><picture><source srcset="images/gallery-01.webp" type="image/webp"><img src="images/gallery-01.jpg" alt="Husky and tan mixed breed dog on green lawn in fenced garden at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(13)" onkeydown="if(event.key==='Enter')openLightbox(13)"><picture><source srcset="images/gallery-09.webp" type="image/webp"><img src="images/gallery-09.jpg" alt="Dogs in secure fenced play area with lush garden at Waterkloof Ridge dog boarding" loading="lazy"></picture></div>
+    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(14)" onkeydown="if(event.key==='Enter')openLightbox(14)"><picture><source srcset="images/gallery-04.webp" type="image/webp"><img src="images/gallery-04.jpg" alt="Friendly Labrador and mixed breed dogs greeting the camera at dog daycare in Waterkloof Ridge Pretoria" loading="lazy"></picture></div>
   </div>
 </section>
 
