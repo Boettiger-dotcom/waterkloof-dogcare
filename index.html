@@ -846,7 +846,7 @@ window.addEventListener('scroll', function() {
 // Scroll fade-up animations
 var observer = new IntersectionObserver(function(entries) {
   entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
-}, { threshold: 0.12 });
+}, { threshold: 0.05 });
 document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
 
 // FAQ toggle icon
@@ -938,7 +938,7 @@ function closeMenu() {
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="block alt" aria-labelledby="faq-heading">
+<section class="block" aria-labelledby="faq-heading">
   <div class="wrap">
     <div class="head-center fade-up">
       <div class="eyebrow">FAQ</div>
