@@ -325,35 +325,56 @@ section { padding: 70px 24px; }
 }
 .btn-quote:hover { background: var(--orange-warm); transform: translateY(-2px); }
 
-/* ===== GALLERY ===== */
+/* ===== GALLERY / CAROUSEL ===== */
 #gallery { background: linear-gradient(180deg, var(--cream) 0%, #FFF3E4 100%); }
-.gallery-grid {
-  max-width: 1000px; margin: 0 auto;
-  columns: 3; column-gap: 16px;
+.carousel-wrap { max-width: 1060px; margin: 0 auto; position: relative; padding: 0 40px; }
+.carousel-window { overflow: hidden; }
+.carousel-track {
+  display: flex; gap: 16px;
+  transition: transform 0.45s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+  will-change: transform;
 }
-.gallery-item {
-  break-inside: avoid; margin-bottom: 16px;
+.carousel-slide {
+  flex: 0 0 calc((100% - 32px) / 3);
   border-radius: 16px; overflow: hidden;
-  box-shadow: 0 4px 20px rgba(44,24,16,0.08);
   cursor: pointer; position: relative;
+  box-shadow: 0 4px 20px rgba(44,24,16,0.08);
   transition: transform 0.3s, box-shadow 0.3s;
 }
-.gallery-item:hover {
+.carousel-slide:hover {
   transform: translateY(-4px);
   box-shadow: 0 12px 36px rgba(44,24,16,0.14);
 }
-.gallery-item picture { display: block; }
-.gallery-item img {
-  width: 100%; height: auto; display: block;
+.carousel-slide picture { display: block; }
+.carousel-slide img {
+  width: 100%; height: 240px; object-fit: cover; display: block;
   transition: transform 0.4s;
 }
-.gallery-item:hover img { transform: scale(1.03); }
-.gallery-item::after {
-  content: ''; position: absolute; inset: 0;
-  background: linear-gradient(to top, rgba(44,24,16,0.15) 0%, transparent 40%);
-  opacity: 0; transition: opacity 0.3s;
+.carousel-slide:hover img { transform: scale(1.03); }
+.carousel-btn {
+  position: absolute; top: calc(50% - 16px); transform: translateY(-50%);
+  background: white; border: none; border-radius: 50%;
+  width: 48px; height: 48px; font-size: 1.6rem; line-height: 1;
+  box-shadow: 0 4px 16px rgba(44,24,16,0.15);
+  cursor: pointer; z-index: 2;
+  display: flex; align-items: center; justify-content: center;
+  transition: background 0.2s, transform 0.2s; color: var(--dark);
 }
-.gallery-item:hover::after { opacity: 1; }
+.carousel-btn:hover { background: var(--orange-light); transform: translateY(-50%) scale(1.08); }
+.carousel-btn:disabled { opacity: 0.3; cursor: default; }
+.carousel-btn:disabled:hover { background: white; transform: translateY(-50%); }
+.carousel-prev { left: -4px; }
+.carousel-next { right: -4px; }
+.carousel-dots { display: flex; justify-content: center; gap: 8px; margin-top: 24px; }
+.carousel-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: rgba(44,24,16,0.2); border: none; cursor: pointer;
+  transition: background 0.2s, width 0.25s; padding: 0;
+}
+.carousel-dot.active { background: var(--orange); width: 24px; border-radius: 4px; }
+@media (min-width: 769px) and (max-width: 1024px) {
+  .carousel-slide { flex: 0 0 calc((100% - 16px) / 2); }
+}
 
 /* ===== LIGHTBOX ===== */
 .lightbox {
@@ -450,7 +471,10 @@ footer {
   .hero-buttons { flex-direction: column; align-items: flex-start; gap: 10px; }
   .hero-buttons .btn { width: 100%; justify-content: center; }
   .pricing-grid { grid-template-columns: 1fr; max-width: 420px; margin: 0 auto; }
-  .gallery-grid { columns: 2; }
+  .carousel-wrap { padding: 0 20px; }
+  .carousel-slide { flex: 0 0 100%; }
+  .carousel-prev { left: -8px; }
+  .carousel-next { right: -8px; }
   .nav-brand span { display: none; }
   .hamburger { display: flex; }
   .nav-links {
@@ -467,7 +491,7 @@ footer {
   section { padding: 50px 20px; }
 }
 @media (max-width: 480px) {
-  .gallery-grid { columns: 1; max-width: 400px; margin: 0 auto; }
+  .carousel-slide img { height: 200px; }
 }
 
 /* ===== SCROLL ANIMATIONS ===== */
@@ -586,22 +610,29 @@ footer {
     <h2>Our <span>Gallery</span></h2>
     <p>Some of our happy guests enjoying their time with us!</p>
   </div>
-  <div class="gallery-grid">
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(0)" onkeydown="if(event.key==='Enter')openLightbox(0)"><picture><source srcset="images/gallery-05.webp" type="image/webp"><img src="images/gallery-05.jpg" alt="Golden retriever, German Shepherd, and border collie with tennis ball at Waterkloof Ridge Dog Daycare" width="800" height="600"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(1)" onkeydown="if(event.key==='Enter')openLightbox(1)"><picture><source srcset="images/gallery-08.webp" type="image/webp"><img src="images/gallery-08.jpg" alt="Close-up portrait of smiling white Swiss Shepherd at Waterkloof Ridge Dog Daycare" width="600" height="800"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(2)" onkeydown="if(event.key==='Enter')openLightbox(2)"><picture><source srcset="images/gallery-02.webp" type="image/webp"><img src="images/gallery-02.jpg" alt="Group of cattle dogs, border collie, and golden retriever playing on garden path at dog daycare in Pretoria" width="600" height="800"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(3)" onkeydown="if(event.key==='Enter')openLightbox(3)"><picture><source srcset="images/gallery-11.webp" type="image/webp"><img src="images/gallery-11.jpg" alt="Dogs with tennis balls on grass including Saint Bernard and golden retrievers at Waterkloof Ridge daycare" width="800" height="600"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(4)" onkeydown="if(event.key==='Enter')openLightbox(4)"><picture><source srcset="images/gallery-03.webp" type="image/webp"><img src="images/gallery-03.jpg" alt="Seven dogs including white Swiss Shepherd, husky, and Labrador gathered on brick patio at Waterkloof Ridge" width="800" height="600"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(5)" onkeydown="if(event.key==='Enter')openLightbox(5)"><picture><source srcset="images/gallery-15.webp" type="image/webp"><img src="images/gallery-15.jpg" alt="Saint Bernard and white Swiss Shepherd standing under leafy plants at dog boarding in Waterkloof Ridge" width="600" height="800"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(6)" onkeydown="if(event.key==='Enter')openLightbox(6)"><picture><source srcset="images/gallery-07.webp" type="image/webp"><img src="images/gallery-07.jpg" alt="German Shepherd, white Swiss Shepherd, cattle dog, and Jack Russell on patio at Waterkloof Ridge Dog Daycare" width="600" height="800"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(7)" onkeydown="if(event.key==='Enter')openLightbox(7)"><picture><source srcset="images/gallery-13.webp" type="image/webp"><img src="images/gallery-13.jpg" alt="Border Collie mix wearing festive reindeer antlers on grass at Waterkloof Ridge Dog Daycare" width="600" height="800"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(8)" onkeydown="if(event.key==='Enter')openLightbox(8)"><picture><source srcset="images/gallery-12.webp" type="image/webp"><img src="images/gallery-12.jpg" alt="Dogs celebrating birthday with chalkboard sign and tennis balls at Waterkloof Ridge Dog Daycare" width="600" height="800"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(9)" onkeydown="if(event.key==='Enter')openLightbox(9)"><picture><source srcset="images/gallery-14.webp" type="image/webp"><img src="images/gallery-14.jpg" alt="Vizsla, German Shorthaired Pointer, and Staffy sitting on grass at dog daycare in Pretoria" width="800" height="697"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(10)" onkeydown="if(event.key==='Enter')openLightbox(10)"><picture><source srcset="images/gallery-10.webp" type="image/webp"><img src="images/gallery-10.jpg" alt="German Shepherd close-up holding rubber chicken toy at Waterkloof Ridge Dog Daycare" width="600" height="800"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(11)" onkeydown="if(event.key==='Enter')openLightbox(11)"><picture><source srcset="images/gallery-06.webp" type="image/webp"><img src="images/gallery-06.jpg" alt="Dogs playing with rugby ball on covered patio at Waterkloof Ridge Dog Daycare Pretoria" width="600" height="800"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(12)" onkeydown="if(event.key==='Enter')openLightbox(12)"><picture><source srcset="images/gallery-01.webp" type="image/webp"><img src="images/gallery-01.jpg" alt="Husky and tan mixed breed dog on green lawn in fenced garden at Waterkloof Ridge Dog Daycare" width="508" height="800"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(13)" onkeydown="if(event.key==='Enter')openLightbox(13)"><picture><source srcset="images/gallery-09.webp" type="image/webp"><img src="images/gallery-09.jpg" alt="Dogs in secure fenced play area with lush garden at Waterkloof Ridge dog boarding" width="800" height="600"></picture></div>
-    <div class="gallery-item" role="button" tabindex="0" onclick="openLightbox(14)" onkeydown="if(event.key==='Enter')openLightbox(14)"><picture><source srcset="images/gallery-04.webp" type="image/webp"><img src="images/gallery-04.jpg" alt="Friendly Labrador and mixed breed dogs greeting the camera at dog daycare in Waterkloof Ridge Pretoria" width="600" height="800"></picture></div>
+  <div class="carousel-wrap">
+    <button class="carousel-btn carousel-prev" id="carPrev" aria-label="Previous">&#8249;</button>
+    <div class="carousel-window">
+      <div class="carousel-track" id="carTrack">
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(0)" onkeydown="if(event.key==='Enter')openLightbox(0)"><picture><source srcset="images/gallery-05.webp" type="image/webp"><img src="images/gallery-05.jpg" alt="Golden retriever, German Shepherd, and border collie with tennis ball at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(1)" onkeydown="if(event.key==='Enter')openLightbox(1)"><picture><source srcset="images/gallery-08.webp" type="image/webp"><img src="images/gallery-08.jpg" alt="Close-up portrait of smiling white Swiss Shepherd at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(2)" onkeydown="if(event.key==='Enter')openLightbox(2)"><picture><source srcset="images/gallery-02.webp" type="image/webp"><img src="images/gallery-02.jpg" alt="Group of cattle dogs, border collie, and golden retriever playing on garden path at dog daycare in Pretoria" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(3)" onkeydown="if(event.key==='Enter')openLightbox(3)"><picture><source srcset="images/gallery-11.webp" type="image/webp"><img src="images/gallery-11.jpg" alt="Dogs with tennis balls on grass including Saint Bernard and golden retrievers at Waterkloof Ridge daycare" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(4)" onkeydown="if(event.key==='Enter')openLightbox(4)"><picture><source srcset="images/gallery-03.webp" type="image/webp"><img src="images/gallery-03.jpg" alt="Seven dogs including white Swiss Shepherd, husky, and Labrador gathered on brick patio at Waterkloof Ridge" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(5)" onkeydown="if(event.key==='Enter')openLightbox(5)"><picture><source srcset="images/gallery-15.webp" type="image/webp"><img src="images/gallery-15.jpg" alt="Saint Bernard and white Swiss Shepherd standing under leafy plants at dog boarding in Waterkloof Ridge" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(6)" onkeydown="if(event.key==='Enter')openLightbox(6)"><picture><source srcset="images/gallery-07.webp" type="image/webp"><img src="images/gallery-07.jpg" alt="German Shepherd, white Swiss Shepherd, cattle dog, and Jack Russell on patio at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(7)" onkeydown="if(event.key==='Enter')openLightbox(7)"><picture><source srcset="images/gallery-13.webp" type="image/webp"><img src="images/gallery-13.jpg" alt="Border Collie mix wearing festive reindeer antlers on grass at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(8)" onkeydown="if(event.key==='Enter')openLightbox(8)"><picture><source srcset="images/gallery-12.webp" type="image/webp"><img src="images/gallery-12.jpg" alt="Dogs celebrating birthday with chalkboard sign and tennis balls at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(9)" onkeydown="if(event.key==='Enter')openLightbox(9)"><picture><source srcset="images/gallery-14.webp" type="image/webp"><img src="images/gallery-14.jpg" alt="Vizsla, German Shorthaired Pointer, and Staffy sitting on grass at dog daycare in Pretoria" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(10)" onkeydown="if(event.key==='Enter')openLightbox(10)"><picture><source srcset="images/gallery-10.webp" type="image/webp"><img src="images/gallery-10.jpg" alt="German Shepherd close-up holding rubber chicken toy at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(11)" onkeydown="if(event.key==='Enter')openLightbox(11)"><picture><source srcset="images/gallery-06.webp" type="image/webp"><img src="images/gallery-06.jpg" alt="Dogs playing with rugby ball on covered patio at Waterkloof Ridge Dog Daycare Pretoria" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(12)" onkeydown="if(event.key==='Enter')openLightbox(12)"><picture><source srcset="images/gallery-01.webp" type="image/webp"><img src="images/gallery-01.jpg" alt="Husky and tan mixed breed dog on green lawn in fenced garden at Waterkloof Ridge Dog Daycare" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(13)" onkeydown="if(event.key==='Enter')openLightbox(13)"><picture><source srcset="images/gallery-09.webp" type="image/webp"><img src="images/gallery-09.jpg" alt="Dogs in secure fenced play area with lush garden at Waterkloof Ridge dog boarding" loading="lazy"></picture></div>
+        <div class="carousel-slide" role="button" tabindex="0" onclick="openLightbox(14)" onkeydown="if(event.key==='Enter')openLightbox(14)"><picture><source srcset="images/gallery-04.webp" type="image/webp"><img src="images/gallery-04.jpg" alt="Friendly Labrador and mixed breed dogs greeting the camera at dog daycare in Waterkloof Ridge Pretoria" loading="lazy"></picture></div>
+      </div>
+    </div>
+    <button class="carousel-btn carousel-next" id="carNext" aria-label="Next">&#8250;</button>
+    <div class="carousel-dots" id="carDots"></div>
   </div>
 </section>
 
@@ -684,6 +715,67 @@ const observer = new IntersectionObserver((entries) => {
   });
 }, { threshold: 0.15 });
 document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+
+// Carousel
+(function() {
+  const track = document.getElementById('carTrack');
+  const slides = track.querySelectorAll('.carousel-slide');
+  const dotsEl = document.getElementById('carDots');
+  const prevBtn = document.getElementById('carPrev');
+  const nextBtn = document.getElementById('carNext');
+  let carIdx = 0;
+  let autoTimer;
+
+  function spv() {
+    return window.innerWidth < 768 ? 1 : window.innerWidth < 1024 ? 2 : 3;
+  }
+  function totalPages() { return Math.ceil(slides.length / spv()); }
+  function currentPage() { return Math.floor(carIdx / spv()); }
+  function slideWidth() { return slides[0].getBoundingClientRect().width + 16; }
+
+  function goTo(idx) {
+    const max = slides.length - spv();
+    carIdx = Math.max(0, Math.min(idx, max));
+    track.style.transform = `translateX(-${carIdx * slideWidth()}px)`;
+    prevBtn.disabled = carIdx === 0;
+    nextBtn.disabled = carIdx >= max;
+    dotsEl.querySelectorAll('.carousel-dot').forEach((d, i) => {
+      d.classList.toggle('active', i === currentPage());
+    });
+  }
+
+  function buildDots() {
+    dotsEl.innerHTML = '';
+    for (let i = 0; i < totalPages(); i++) {
+      const d = document.createElement('button');
+      d.className = 'carousel-dot' + (i === currentPage() ? ' active' : '');
+      d.setAttribute('aria-label', `Page ${i + 1}`);
+      d.addEventListener('click', () => { goTo(i * spv()); resetAuto(); });
+      dotsEl.appendChild(d);
+    }
+  }
+
+  function resetAuto() {
+    clearInterval(autoTimer);
+    autoTimer = setInterval(() => {
+      const max = slides.length - spv();
+      goTo(carIdx >= max ? 0 : carIdx + spv());
+    }, 4000);
+  }
+
+  prevBtn.addEventListener('click', () => { goTo(carIdx - spv()); resetAuto(); });
+  nextBtn.addEventListener('click', () => { goTo(carIdx + spv()); resetAuto(); });
+
+  const wrap = track.closest('.carousel-wrap');
+  wrap.addEventListener('mouseenter', () => clearInterval(autoTimer));
+  wrap.addEventListener('mouseleave', resetAuto);
+
+  window.addEventListener('resize', () => { buildDots(); goTo(currentPage() * spv()); });
+
+  buildDots();
+  goTo(0);
+  resetAuto();
+})();
 
 // Lightbox
 const galleryImages = [
