@@ -7,6 +7,9 @@
 <meta name="description" content="Dog daycare (R110/day) and boarding (R200/night) in Waterkloof Ridge, Pretoria. Open 7 days a week, 07:00–18:00. Safe, supervised, and full of love." />
 <link rel="canonical" href="https://waterkloofdogdaycare.co.za" />
 <link rel="preload" as="image" href="images/hero-custom.webp" type="image/webp" fetchpriority="high" />
+<link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
+<link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
+<link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
 
 <!-- Open Graph -->
 <meta property="og:type" content="website" />
@@ -271,7 +274,9 @@
     background: rgba(255,255,255,0.88);
     backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--border);
+    transition: box-shadow 0.3s ease;
   }
+  header.nav.scrolled { box-shadow: 0 4px 24px rgba(0,0,0,0.08); }
   .nav-inner {
     display: flex;
     align-items: center;
@@ -565,6 +570,14 @@
     color: rgba(255,255,255,0.5);
   }
 
+  /* ---------- Scroll animations ---------- */
+  .fade-up {
+    opacity: 0;
+    transform: translateY(28px);
+    transition: opacity 0.65s ease, transform 0.65s ease;
+  }
+  .fade-up.visible { opacity: 1; transform: translateY(0); }
+
   /* ---------- Hamburger ---------- */
   .hamburger {
     display: none;
@@ -704,7 +717,7 @@
 <!-- ============ SERVICES ============ -->
 <section class="block" id="services" aria-labelledby="services-heading">
   <div class="wrap">
-    <div class="head-center">
+    <div class="head-center fade-up">
       <div class="eyebrow">Services & Pricing</div>
       <h2 class="section-title" id="services-heading">How Much Does Dog Daycare & Boarding Cost?</h2>
       <p class="section-lead">Transparent, affordable pricing with no hidden fees — daycare from R110/day, boarding from R200/night.</p>
@@ -738,12 +751,12 @@
 <!-- ============ HOW IT WORKS ============ -->
 <section class="block alt" id="about" aria-labelledby="how-heading">
   <div class="wrap">
-    <div class="head-center">
+    <div class="head-center fade-up">
       <div class="eyebrow">Getting Started</div>
       <h2 class="section-title" id="how-heading">How Do I Get My Dog Into Daycare?</h2>
       <p class="section-lead">Getting started is simple — just reach out and we'll guide you through the rest.</p>
     </div>
-    <div class="steps">
+    <div class="steps fade-up">
       <div class="step">
         <div class="num">1</div>
         <h3>Get in Touch</h3>
@@ -766,7 +779,7 @@
 <!-- ============ WHY US ============ -->
 <section class="block" id="portfolio" aria-labelledby="why-heading">
   <div class="wrap">
-    <div class="why-grid">
+    <div class="why-grid fade-up">
       <img src="images/why-us.webp" alt="Group of dogs socialising and playing in the safe outdoor garden at Waterkloof Ridge Dog Daycare, Pretoria" style="width:100%;aspect-ratio:4/3.4;object-fit:cover;border-radius:var(--radius);border:1px solid var(--border);">
       <div>
         <div class="eyebrow">Why us</div>
@@ -797,7 +810,7 @@
 <!-- ============ GALLERY ============ -->
 <section class="block alt" aria-labelledby="gallery-heading">
   <div class="wrap">
-    <div class="head-center">
+    <div class="head-center fade-up">
       <div class="eyebrow">Gallery</div>
       <h2 class="section-title" id="gallery-heading">Meet Our Happy Guests</h2>
       <p class="section-lead">Some of our happy guests enjoying their time with us in Waterkloof Ridge!</p>
@@ -825,6 +838,17 @@
   <img id="lb-img" src="" style="max-width:90vw;max-height:85vh;border-radius:12px;object-fit:contain;cursor:default;" onclick="event.stopPropagation()">
 </div>
 <script>
+// Nav scroll shadow
+window.addEventListener('scroll', function() {
+  document.querySelector('header.nav').classList.toggle('scrolled', window.scrollY > 20);
+});
+
+// Scroll fade-up animations
+var observer = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) { if (e.isIntersecting) { e.target.classList.add('visible'); observer.unobserve(e.target); } });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+
 // FAQ toggle icon
 document.querySelectorAll('details').forEach(function(d){
   d.addEventListener('toggle',function(){
@@ -848,11 +872,11 @@ function closeMenu() {
 <!-- ============ TESTIMONIALS ============ -->
 <section class="block alt" aria-labelledby="reviews-heading">
   <div class="wrap">
-    <div class="head-center">
+    <div class="head-center fade-up">
       <div class="eyebrow">Testimonials</div>
       <h2 class="section-title" id="reviews-heading">What Dog Parents in Pretoria Say</h2>
     </div>
-    <div class="cards-4">
+    <div class="cards-4 fade-up">
       <div class="card">
         <div class="stars">
           <svg viewBox="0 0 24 24"><path d="M12 2l3 6.3 6.9.9-5 4.8 1.2 6.8L12 17.6 5.9 20.8 7 14 2 9.2l6.9-.9L12 2z"/></svg>
@@ -916,7 +940,7 @@ function closeMenu() {
 <!-- ============ FAQ ============ -->
 <section class="block alt" aria-labelledby="faq-heading">
   <div class="wrap">
-    <div class="head-center">
+    <div class="head-center fade-up">
       <div class="eyebrow">FAQ</div>
       <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
       <p class="section-lead">Everything you need to know before booking your dog in.</p>
