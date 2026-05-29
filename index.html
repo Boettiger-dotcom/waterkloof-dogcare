@@ -70,6 +70,7 @@
 </script>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="preload" as="image" href="images/hero.webp" type="image/webp" fetchpriority="high">
 <style>
 :root {
   --orange: #D4882B;
@@ -158,6 +159,8 @@ nav.scrolled { box-shadow: 0 4px 30px rgba(44,24,16,0.08); }
 .hero-bg {
   position: absolute; inset: 0;
   background-image: url('images/hero.jpg');
+  background-image: -webkit-image-set(url('images/hero.webp') type('image/webp'), url('images/hero.jpg') type('image/jpeg'));
+  background-image: image-set(url('images/hero.webp') type('image/webp'), url('images/hero.jpg') type('image/jpeg'));
   background-size: cover;
   background-position: center 30%;
   z-index: 0;
