@@ -803,7 +803,7 @@
 <!-- ============ HOW IT WORKS ============ -->
 <section class="block alt" id="about" aria-labelledby="how-heading">
   <div class="wrap">
-    <div class="head-center">
+    <div class="head-center fade-up">
       <div class="eyebrow">Getting Started</div>
       <h2 class="section-title" id="how-heading">How Do I Get My Dog Into Daycare?</h2>
       <p class="section-lead">Getting started is simple — just reach out and we'll guide you through the rest.</p>
@@ -925,7 +925,7 @@ var observer = new IntersectionObserver(function(entries) {
     el.classList.add('visible');
     observer.unobserve(el);
   });
-}, { threshold: 0.05 });
+}, { threshold: 0.50 });
 document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
 
 // Separate observer for service cards — waits until section is well in view
