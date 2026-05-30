@@ -917,6 +917,9 @@ document.querySelectorAll('.trust .stat').forEach(function(el) {
   el.classList.add('pop-lr');
 });
 
+// Lower thresholds on mobile so animations fire sooner on small screens
+var isMobile = window.matchMedia('(max-width: 767px)').matches;
+
 // Stagger-aware scroll observer (handles both fade-up and fade-bounce)
 var observer = new IntersectionObserver(function(entries) {
   // Compute all delays before adding .visible to any element
@@ -934,7 +937,7 @@ var observer = new IntersectionObserver(function(entries) {
     el.classList.add('visible');
     observer.unobserve(el);
   });
-}, { threshold: 0.50 });
+}, { threshold: isMobile ? 0.10 : 0.50 });
 document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
 
 // Separate observer for service cards — waits until section is well in view
@@ -945,7 +948,7 @@ var serviceObserver = new IntersectionObserver(function(entries) {
       var el = e.target;
       var siblings = Array.from(el.parentElement.querySelectorAll('.fade-bounce:not(.visible)'));
       var idx = siblings.indexOf(el);
-      el.style.transitionDelay = (Math.max(idx, 0) * 0.3) + 's';
+      el.style.transitionDelay = (Math.max(idx, 0) * (isMobile ? 0.12 : 0.3)) + 's';
       toShow.push(el);
     }
   });
@@ -953,7 +956,7 @@ var serviceObserver = new IntersectionObserver(function(entries) {
     el.classList.add('visible');
     serviceObserver.unobserve(el);
   });
-}, { threshold: 0.35 });
+}, { threshold: isMobile ? 0.08 : 0.35 });
 document.querySelectorAll('.fade-bounce').forEach(function(el) { serviceObserver.observe(el); });
 
 // Trust bar left-to-right pop observer — fires once when bar enters view, then staggers each stat
@@ -970,7 +973,7 @@ var trustObserver = new IntersectionObserver(function(entries) {
       trustObserver.disconnect();
     }
   });
-}, { threshold: 0.4 });
+}, { threshold: isMobile ? 0.10 : 0.4 });
 if (trustSection) trustObserver.observe(trustSection);
 
 // Counter animation for trust bar numbers
