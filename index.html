@@ -389,7 +389,7 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 24px;
-    padding: 38px 0;
+    padding: 34px 0;
   }
   .stat { text-align: center; position: relative; }
   .stat + .stat::before {
@@ -582,13 +582,21 @@
   }
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
-  /* ---------- Pop-in-place variant for service cards ---------- */
+  /* ---------- Slide-up variant for service cards ---------- */
   .fade-bounce {
     opacity: 0;
-    transform: scale(0.82);
-    transition: opacity 0.4s ease, transform 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform: translateY(50px);
+    transition: opacity 0.55s ease, transform 0.6s ease;
   }
-  .fade-bounce.visible { opacity: 1; transform: scale(1); }
+  .fade-bounce.visible { opacity: 1; transform: translateY(0); }
+
+  /* ---------- Left-to-right pop for trust bar ---------- */
+  .pop-lr {
+    opacity: 0;
+    transform: scale(0.72) translateY(10px);
+    transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.34, 1.62, 0.64, 1);
+  }
+  .pop-lr.visible { opacity: 1; transform: scale(1) translateY(0); }
 
   /* ---------- Hero entrance ---------- */
   @keyframes heroEnter {
@@ -891,8 +899,13 @@ window.addEventListener('scroll', function() {
 document.querySelectorAll('#services .card').forEach(function(el) {
   el.classList.add('fade-bounce');
 });
-document.querySelectorAll('.cards-4 .card, details, .trust .stat').forEach(function(el) {
+document.querySelectorAll('.cards-4 .card, details').forEach(function(el) {
   el.classList.add('fade-up');
+});
+
+// Trust bar stats get the left-to-right pop
+document.querySelectorAll('.trust .stat').forEach(function(el) {
+  el.classList.add('pop-lr');
 });
 
 // Stagger-aware scroll observer (handles both fade-up and fade-bounce)
@@ -933,6 +946,23 @@ var serviceObserver = new IntersectionObserver(function(entries) {
   });
 }, { threshold: 0.35 });
 document.querySelectorAll('.fade-bounce').forEach(function(el) { serviceObserver.observe(el); });
+
+// Trust bar left-to-right pop observer — fires once when bar enters view, then staggers each stat
+var trustFired = false;
+var trustSection = document.querySelector('.trust');
+var trustObserver = new IntersectionObserver(function(entries) {
+  entries.forEach(function(e) {
+    if (e.isIntersecting && !trustFired) {
+      trustFired = true;
+      document.querySelectorAll('.trust .stat.pop-lr').forEach(function(el, i) {
+        el.style.transitionDelay = (i * 0.18) + 's';
+        el.classList.add('visible');
+      });
+      trustObserver.disconnect();
+    }
+  });
+}, { threshold: 0.4 });
+if (trustSection) trustObserver.observe(trustSection);
 
 // Counter animation for trust bar numbers
 function animateCount(el) {
