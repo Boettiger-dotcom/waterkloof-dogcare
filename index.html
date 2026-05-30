@@ -6,7 +6,7 @@
 <title>Dog Daycare & Boarding in Waterkloof Ridge, Pretoria | R110/day</title>
 <meta name="description" content="Dog daycare (R110/day) and boarding (R200/24hrs) in Waterkloof Ridge, Pretoria. Open 7 days a week, 07:00–18:00. Safe, supervised, and full of love." />
 <link rel="canonical" href="https://waterkloofdogdaycare.co.za" />
-<link rel="preload" as="image" href="images/hero-custom.webp" type="image/webp" fetchpriority="high" />
+<link rel="preload" as="image" href="images/hero-custom-mobile.webp" imagesrcset="images/hero-custom-mobile.webp 800w, images/hero-custom-desktop.webp 1440w" imagesizes="100vw" fetchpriority="high" />
 <link rel="icon" type="image/png" sizes="32x32" href="images/favicon-32.png" />
 <link rel="icon" type="image/png" sizes="16x16" href="images/favicon-16.png" />
 <link rel="apple-touch-icon" sizes="180x180" href="images/apple-touch-icon.png" />
@@ -742,7 +742,16 @@
 
 <!-- ============ HERO ============ -->
 <section aria-label="Introduction" class="hero" id="top" style="background-color:#1a1008;padding:0;text-align:left;min-height:75vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;">
-  <div style="position:absolute;inset:0;background-image:url('images/hero-custom.webp');background-size:cover;background-position:center 30%;z-index:0;" role="img" aria-label="Dogs playing at Waterkloof Ridge Dog Daycare in Pretoria"></div>
+  <img
+    src="images/hero-custom-desktop.webp"
+    srcset="images/hero-custom-mobile.webp 800w, images/hero-custom-desktop.webp 1440w"
+    sizes="100vw"
+    alt="Dogs playing at Waterkloof Ridge Dog Daycare in Pretoria"
+    fetchpriority="high"
+    loading="eager"
+    decoding="async"
+    style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 30%;z-index:0;"
+  />
   <div style="position:absolute;inset:0;background:linear-gradient(to top,rgba(20,10,5,0.60) 0%,rgba(20,10,5,0.25) 45%,rgba(20,10,5,0.05) 100%);z-index:1;"></div>
   <div class="wrap" style="position:relative;z-index:2;padding-bottom:80px;padding-top:80px;">
     <h1 class="hero-title hero-enter hero-enter-1" style="color:#fff;max-width:700px;">Dog Daycare & Boarding in Waterkloof Ridge</h1>
