@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
+<script>document.documentElement.className += ' js';</script>
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>Dog Daycare & Boarding in Waterkloof Ridge, Pretoria | R110/day</title>
 <meta name="description" content="Dog daycare (R110/day) and boarding (R200/24hrs) in Waterkloof Ridge, Pretoria. Open 7 days a week, 07:00–18:00. Safe, supervised, and full of love." />
@@ -574,8 +575,10 @@
     color: rgba(255,255,255,0.5);
   }
 
-  /* ---------- Scroll animations ---------- */
-  .fade-up {
+  /* ---------- Scroll animations ----------
+     Hiding is gated behind .js so that if JavaScript fails to run,
+     nothing stays invisible — all content shows by default. */
+  .js .fade-up {
     opacity: 0;
     transform: translateY(28px);
     transition: opacity 0.65s ease, transform 0.65s ease;
@@ -583,7 +586,7 @@
   .fade-up.visible { opacity: 1; transform: translateY(0); }
 
   /* ---------- Slide-up variant for service cards ---------- */
-  .fade-bounce {
+  .js .fade-bounce {
     opacity: 0;
     transform: translateY(50px);
     transition: opacity 0.55s ease, transform 0.6s ease;
@@ -591,12 +594,22 @@
   .fade-bounce.visible { opacity: 1; transform: translateY(0); }
 
   /* ---------- Left-to-right pop for trust bar ---------- */
-  .pop-lr {
+  .js .pop-lr {
     opacity: 0;
     transform: scale(0.72) translateY(10px);
     transition: opacity 0.35s ease, transform 0.5s cubic-bezier(0.34, 1.62, 0.64, 1);
   }
   .pop-lr.visible { opacity: 1; transform: scale(1) translateY(0); }
+
+  /* If the visitor prefers reduced motion, show everything immediately */
+  @media (prefers-reduced-motion: reduce) {
+    .js .fade-up, .js .fade-bounce, .js .pop-lr, .hero-enter {
+      opacity: 1 !important;
+      transform: none !important;
+      animation: none !important;
+      transition: none !important;
+    }
+  }
 
   /* ---------- Hero entrance ---------- */
   @keyframes heroEnter {
@@ -741,7 +754,7 @@
 </header>
 
 <!-- ============ HERO ============ -->
-<section aria-label="Introduction" class="hero" id="top" style="background-color:#1a1008;padding:0;text-align:left;min-height:75vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;">
+<section aria-label="Introduction" class="hero" id="top" style="background:#1a1008 url('data:image/webp;base64,UklGRlABAABXRUJQVlA4IEQBAACQBgCdASogABgAPu1iqU2ppaOiMAgBMB2JYgC7MzBpAsH0EzuZMeZiW4sP4IMABBiHyjEr+7XxHj1JhoNAAP1TQQDxnah/m2UcJBqu7Zb3NcyI2UksG07dApDL4bzRgzn6wDrMYQ4tYn+V8gUA9ZrKbJhKuxqtCG9hLv0ekWLcLX48Uw0CRTJ8YN9bVEUy9UAnrTIQlcDQODcmJoGNr4x87NP5/jquTYA8ZH2LoBJqIx3T8pbQ8lwKcoYf/JTT++Ka/gx8VF0vTk+QvePN4/mSoTdHzc8Kb87gra2t/nL9IzLQmL49ehTZehgC/02y8G7NDRndmTyTtFIm5pebt79bjKbUbpS+GPrMiONU6ZfoUOUEjaTlJbBy3aWcDGRBedzdTXdiPWvTdxmVQmw+xvr2yITeSIZsw2jTvkdw1fF9xoNAAAA=') center/cover no-repeat;padding:0;text-align:left;min-height:75vh;display:flex;align-items:flex-end;position:relative;overflow:hidden;">
   <img
     src="images/hero-custom-desktop.webp"
     srcset="images/hero-custom-mobile.webp 800w, images/hero-custom-desktop.webp 1440w"
@@ -877,21 +890,21 @@
       <p class="section-lead">Some of our happy guests enjoying their time with us in Waterkloof Ridge!</p>
     </div>
     <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" role="list" aria-label="Photo gallery of dogs at Waterkloof Ridge Dog Daycare">
-      <img class="fade-up" src="images/gallery-01.webp" alt="Husky and tan mixed breed dog running on the green lawn at Waterkloof Ridge Dog Daycare, Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-02.webp" alt="Group of cattle dogs, border collie and golden retriever playing on the garden path at dog daycare in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-03.webp" alt="Seven dogs including white Swiss Shepherd, husky and Labrador gathered on brick patio at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-04.webp" alt="Friendly Labrador and mixed breed dogs greeting the camera at dog daycare in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-05.webp" alt="Golden retriever, German Shepherd and border collie with tennis ball at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-06.webp" alt="Dogs playing with a rugby ball on the covered patio at Waterkloof Ridge Dog Daycare Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-07.webp" alt="German Shepherd, white Swiss Shepherd, cattle dog and Jack Russell relaxing on patio at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-08.webp" alt="Close-up portrait of a smiling white Swiss Shepherd at Waterkloof Ridge Dog Daycare in Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-09.webp" alt="Dogs in a secure fenced play area with lush garden at Waterkloof Ridge dog boarding, Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-10.webp" alt="German Shepherd close-up holding a rubber chicken toy at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-11.webp" alt="Dogs with tennis balls on grass including Saint Bernard and golden retrievers at Waterkloof Ridge daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-12.webp" alt="Dogs celebrating a birthday with a chalkboard sign and tennis balls at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-13.webp" alt="Border Collie mix wearing festive reindeer antlers on the grass at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-14.webp" alt="Vizsla, German Shorthaired Pointer and Staffy sitting on grass at dog daycare in Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" src="images/gallery-15.webp" alt="Saint Bernard and white Swiss Shepherd standing under leafy plants at dog boarding in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-01.webp" alt="Husky and tan mixed breed dog running on the green lawn at Waterkloof Ridge Dog Daycare, Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-02.webp" alt="Group of cattle dogs, border collie and golden retriever playing on the garden path at dog daycare in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-03.webp" alt="Seven dogs including white Swiss Shepherd, husky and Labrador gathered on brick patio at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-04.webp" alt="Friendly Labrador and mixed breed dogs greeting the camera at dog daycare in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-05.webp" alt="Golden retriever, German Shepherd and border collie with tennis ball at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-06.webp" alt="Dogs playing with a rugby ball on the covered patio at Waterkloof Ridge Dog Daycare Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-07.webp" alt="German Shepherd, white Swiss Shepherd, cattle dog and Jack Russell relaxing on patio at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-08.webp" alt="Close-up portrait of a smiling white Swiss Shepherd at Waterkloof Ridge Dog Daycare in Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-09.webp" alt="Dogs in a secure fenced play area with lush garden at Waterkloof Ridge dog boarding, Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-10.webp" alt="German Shepherd close-up holding a rubber chicken toy at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-11.webp" alt="Dogs with tennis balls on grass including Saint Bernard and golden retrievers at Waterkloof Ridge daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-12.webp" alt="Dogs celebrating a birthday with a chalkboard sign and tennis balls at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-13.webp" alt="Border Collie mix wearing festive reindeer antlers on the grass at Waterkloof Ridge Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-14.webp" alt="Vizsla, German Shorthaired Pointer and Staffy sitting on grass at dog daycare in Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-15.webp" alt="Saint Bernard and white Swiss Shepherd standing under leafy plants at dog boarding in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
     </div>
   </div>
 </section>
@@ -1016,6 +1029,18 @@ function closeMenu() {
   document.getElementById('hamburger').classList.remove('open');
   document.getElementById('nav-links').classList.remove('open');
 }
+
+// Safety net: guarantee no animated element ever stays hidden.
+// If IntersectionObserver isn't supported, or an element is somehow never
+// revealed (fast scroll, a JS hiccup), force everything visible as a backstop.
+(function() {
+  var revealAll = function() {
+    document.querySelectorAll('.fade-up:not(.visible), .fade-bounce:not(.visible), .pop-lr:not(.visible)')
+      .forEach(function(el) { el.style.transitionDelay = '0s'; el.classList.add('visible'); });
+  };
+  if (!('IntersectionObserver' in window)) { revealAll(); return; }
+  window.addEventListener('load', function() { setTimeout(revealAll, 2500); });
+})();
 </script>
 <script>function openLb(src){var lb=document.getElementById('lb');lb.style.display='flex';document.getElementById('lb-img').src=src;}document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('lb').style.display='none';});</script>
 
