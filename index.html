@@ -845,10 +845,10 @@
     <div class="head-center">
       <h2 class="section-title" id="gallery-heading">Meet Our Happy Guests</h2>
     </div>
-    <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" role="list" aria-label="Photo gallery of dogs at Waterkloof Dog Daycare">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-01.webp" alt="Husky and tan mixed breed dog running on the green lawn at Waterkloof Dog Daycare, Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-02.webp" alt="Group of cattle dogs, border collie and golden retriever playing on the garden path at dog daycare in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-03.webp" alt="Seven dogs including white Swiss Shepherd, husky and Labrador gathered on brick patio at Waterkloof Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+    <div id="gallery-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" role="list" aria-label="Photo gallery of dogs at Waterkloof Dog Daycare">
+      <img class="fade-up" loading="eager" decoding="async" src="images/gallery-01.webp" alt="Husky and tan mixed breed dog running on the green lawn at Waterkloof Dog Daycare, Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="eager" decoding="async" src="images/gallery-02.webp" alt="Group of cattle dogs, border collie and golden retriever playing on the garden path at dog daycare in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
+      <img class="fade-up" loading="eager" decoding="async" src="images/gallery-03.webp" alt="Seven dogs including white Swiss Shepherd, husky and Labrador gathered on brick patio at Waterkloof Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
       <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-04.webp" alt="Friendly Labrador and mixed breed dogs greeting the camera at dog daycare in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
       <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-05.webp" alt="Golden retriever, German Shepherd and border collie with tennis ball at Waterkloof Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
       <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-06.webp" alt="Dogs playing with a rugby ball on the covered patio at Waterkloof Dog Daycare Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:var(--radius);cursor:pointer;" onclick="openLb(this.src)" role="listitem">
@@ -904,7 +904,17 @@ var observer = new IntersectionObserver(function(entries) {
     observer.unobserve(el);
   });
 }, { threshold: isMobile ? 0.10 : 0.15 });
-document.querySelectorAll('.fade-up').forEach(function(el) { observer.observe(el); });
+// Gallery photos reveal per-image on load (below), so keep them out of the scroll observer
+document.querySelectorAll('.fade-up').forEach(function(el) {
+  if (!el.closest('#gallery-grid')) observer.observe(el);
+});
+
+// Gallery: fade each photo in the moment its own bytes finish loading, so a box never appears empty
+document.querySelectorAll('#gallery-grid img').forEach(function(img) {
+  var show = function() { img.classList.add('visible'); };
+  if (img.complete && img.naturalWidth) { show(); }
+  else { img.addEventListener('load', show); img.addEventListener('error', show); }
+});
 
 // Separate observer for service cards - waits until section is well in view
 var serviceObserver = new IntersectionObserver(function(entries) {
