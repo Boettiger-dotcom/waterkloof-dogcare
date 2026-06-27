@@ -69,9 +69,8 @@
       {
         "@type": "Offer",
         "name": "Long Stay Boarding",
-        "price": "0",
         "priceCurrency": "ZAR",
-        "description": "Flexible custom rates for extended stays and multiple dogs."
+        "description": "Flexible custom rates for extended stays and multiple dogs. Contact us for a quote."
       }
     ]
   },
@@ -327,6 +326,7 @@
   }
   nav.links a:hover { color: #fff; }
   .nav-cta { margin-left: 10px; padding: 12px 22px; }
+  .nav-menu-cta { display: none; }
 
   /* ---------- Hero ---------- */
   .hero {
@@ -678,6 +678,7 @@
     nav.links a { padding: 12px 16px; border-radius: 8px; font-size: 16px; }
     nav.links a:hover { background: rgba(255,255,255,0.12); color: #fff; }
     .nav-cta { display: none; }
+    nav.links.open .nav-menu-cta { display: inline-flex; margin: 12px 16px 4px; width: calc(100% - 32px); }
   }
 
   /* ---------- Mobile ---------- */
@@ -739,6 +740,7 @@
       <a href="#about" onclick="closeMenu()">How It Works</a>
       <a href="#why-us" onclick="closeMenu()">Why Us</a>
       <a href="#contact" onclick="closeMenu()">Contact</a>
+      <a class="btn btn-primary nav-menu-cta" href="https://wa.me/27711172998" target="_blank" rel="noopener" onclick="closeMenu()">Get In Touch</a>
     </nav>
     <a class="btn btn-primary nav-cta" href="https://wa.me/27711172998" target="_blank" rel="noopener">Get In Touch</a>
     <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
@@ -890,8 +892,9 @@
     </div>
   </div>
 </section>
-<div id="lb" onclick="this.style.display='none'" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:200;align-items:center;justify-content:center;cursor:pointer;">
-  <img id="lb-img" src="" style="max-width:90vw;max-height:85vh;border-radius:12px;object-fit:contain;cursor:default;" onclick="event.stopPropagation()">
+<div id="lb" role="dialog" aria-modal="true" aria-label="Image preview" onclick="closeLb()" style="display:none;position:fixed;inset:0;background:rgba(0,0,0,0.9);z-index:200;align-items:center;justify-content:center;cursor:pointer;">
+  <button type="button" onclick="closeLb()" aria-label="Close preview" style="position:fixed;top:18px;right:24px;background:none;border:none;color:#fff;font-size:34px;line-height:1;cursor:pointer;padding:6px 10px;border-radius:8px;">&times;</button>
+  <img id="lb-img" src="" alt="" style="max-width:90vw;max-height:85vh;border-radius:12px;object-fit:contain;cursor:default;" onclick="event.stopPropagation()">
 </div>
 <script>
 // Nav scroll shadow
@@ -991,7 +994,7 @@ function closeMenu() {
   window.addEventListener('load', function() { setTimeout(revealAll, 2500); });
 })();
 </script>
-<script>function openLb(el){var lb=document.getElementById('lb');lb.style.display='flex';var img=document.getElementById('lb-img');img.src=el.src;img.alt=el.alt||'';}document.addEventListener('keydown',function(e){if(e.key==='Escape')document.getElementById('lb').style.display='none';});</script>
+<script>function openLb(el){var lb=document.getElementById('lb');lb.style.display='flex';var img=document.getElementById('lb-img');img.src=el.src;img.alt=el.alt||'';}function closeLb(){document.getElementById('lb').style.display='none';}document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLb();});</script>
 
 <!-- ============ TESTIMONIALS ============ -->
 <section class="block" aria-labelledby="reviews-heading">
@@ -1142,7 +1145,7 @@ function closeMenu() {
         <p class="ft-desc">Dog daycare and boarding in Waterkloof Ridge, Pretoria. Open 7 days a week.</p>
       </div>
       <div class="ft-col">
-        <h3>Quick Links</h3>
+        <h4>Quick Links</h4>
         <ul>
           <li><a href="#top">Home</a></li>
           <li><a href="#services">Services & Pricing</a></li>
@@ -1152,7 +1155,7 @@ function closeMenu() {
         </ul>
       </div>
       <div class="ft-col ft-contact">
-        <h3>Contact</h3>
+        <h4>Contact</h4>
         <div><strong>Location</strong><br/>Waterkloof Ridge<br/>Pretoria, 0181</div>
         <div><strong>Phone</strong> &nbsp;<a href="tel:+27711172998" style="color:rgba(255,255,255,0.7);">071 117 2998</a></div>
         <div><strong>Hours</strong> &nbsp;Mon-Sun, 07:00-18:00</div>
