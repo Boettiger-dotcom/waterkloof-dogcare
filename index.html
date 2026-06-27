@@ -652,8 +652,8 @@
     flex-direction: column;
     justify-content: center;
     gap: 5px;
-    width: 36px; height: 36px;
-    background: none; border: none; cursor: pointer; padding: 4px;
+    width: 44px; height: 44px;
+    background: none; border: none; cursor: pointer; padding: 8px;
   }
   .hamburger span {
     display: block; height: 2px; border-radius: 2px;
@@ -752,7 +752,7 @@
       <a class="btn btn-primary nav-menu-cta" href="https://wa.me/27711172998" target="_blank" rel="noopener" onclick="closeMenu()">Get In Touch</a>
     </nav>
     <a class="btn btn-primary nav-cta" href="https://wa.me/27711172998" target="_blank" rel="noopener">Get In Touch</a>
-    <button class="hamburger" id="hamburger" aria-label="Toggle menu" onclick="toggleMenu()">
+    <button class="hamburger" id="hamburger" aria-label="Toggle menu" aria-expanded="false" aria-controls="nav-links" onclick="toggleMenu()">
       <span></span><span></span><span></span>
     </button>
   </div>
@@ -983,12 +983,15 @@ document.querySelectorAll('details').forEach(function(d) {
 function toggleMenu() {
   var h = document.getElementById('hamburger');
   var n = document.getElementById('nav-links');
-  h.classList.toggle('open');
-  n.classList.toggle('open');
+  var open = h.classList.toggle('open');
+  n.classList.toggle('open', open);
+  h.setAttribute('aria-expanded', open ? 'true' : 'false');
 }
 function closeMenu() {
-  document.getElementById('hamburger').classList.remove('open');
+  var h = document.getElementById('hamburger');
+  h.classList.remove('open');
   document.getElementById('nav-links').classList.remove('open');
+  h.setAttribute('aria-expanded', 'false');
 }
 
 // Safety net: guarantee no animated element ever stays hidden.
