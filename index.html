@@ -220,7 +220,7 @@
     --text: #242A31;
     --muted: #4b5563;
     --border: #E4E6EA;
-    --radius: 8px;
+    --radius: 16px;
     --font: "Nunito", "Helvetica Neue", Helvetica, system-ui, sans-serif;
     --font-head: "Fraunces", "Nunito", "Helvetica Neue", Helvetica, system-ui, sans-serif;
     --maxw: 1180px;
@@ -247,6 +247,15 @@
   .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 32px; }
 
   .section-title { font-size: clamp(30px, 4vw, 44px); }
+  .head-center .section-title::after {
+    content: "";
+    display: block;
+    width: 54px;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--accent);
+    margin: 18px auto 0;
+  }
 
   /* ---------- Buttons ---------- */
   .btn {
@@ -435,7 +444,7 @@
   }
   .icon-badge svg { width: 28px; height: 28px; fill: var(--accent); }
   .card h3 { font-size: 21px; margin-bottom: 12px; font-weight: 800; }
-  .card p { color: var(--muted); font-size: 16px; font-weight: 700; }
+  .card p { color: var(--muted); font-size: 16px; font-weight: 400; }
   #services .card { display: flex; flex-direction: column; }
   #services .card .btn { margin: 4px 0 22px; }
 
@@ -444,7 +453,7 @@
   .block.alt #services .card {
     background: var(--navy);
     border-color: transparent;
-    border-radius: 24px;
+    border-radius: var(--radius);
     box-shadow: 0 14px 32px rgba(2,132,199,0.22);
   }
   #services .card h3 { color: #fff; font-size: 26px; font-weight: 800; margin-bottom: 4px; }
@@ -485,7 +494,7 @@
     border: 4px solid var(--bg);
   }
   .step h3 { font-size: 19px; margin-bottom: 10px; }
-  .step p { color: var(--muted); font-size: 16px; font-weight: 700; max-width: 280px; margin: 0 auto; }
+  .step p { color: var(--muted); font-size: 16px; font-weight: 400; max-width: 280px; margin: 0 auto; }
 
   /* ---------- Why us ---------- */
   .why-grid {
@@ -526,12 +535,12 @@
   }
   .check img { width: 44px; height: auto; display: block; }
   .why-item h3 { font-size: 18px; margin-bottom: 4px; }
-  .why-item p { color: var(--muted); font-size: 15.5px; font-weight: 700; }
+  .why-item p { color: var(--muted); font-size: 15.5px; font-weight: 400; }
 
   /* ---------- Testimonials ---------- */
   .stars { display: flex; gap: 3px; margin-bottom: 18px; }
   .stars svg { width: 18px; height: 18px; fill: var(--accent); }
-  .quote { font-style: italic; font-size: 17px; font-weight: 700; color: var(--text); margin-bottom: 24px; }
+  .quote { font-style: italic; font-size: 17px; font-weight: 500; color: var(--text); margin-bottom: 24px; }
   .who { display: flex; align-items: center; gap: 13px; }
   .avatar {
     width: 44px; height: 44px;
@@ -553,7 +562,7 @@
     padding: clamp(48px, 6vw, 72px) 0;
   }
   .cta h2 { font-size: clamp(32px, 4.5vw, 50px); }
-  .cta p { font-family: var(--font-head); color: rgba(255,255,255,0.92); font-size: 19px; font-weight: 700; margin: 20px auto 38px; max-width: 520px; }
+  .cta p { font-family: var(--font-head); color: rgba(255,255,255,0.92); font-size: 19px; font-weight: 500; margin: 20px auto 38px; max-width: 520px; }
   .cta .btn-primary { padding: 17px 40px; font-size: 17px; }
 
   /* ---------- Footer ---------- */
@@ -567,7 +576,7 @@
   footer.ft .logo { color: #fff; margin-bottom: 18px; }
   footer.ft .logo-mark { background: #fff; }
   footer.ft .logo-mark::after { background: var(--accent); }
-  .ft-desc { font-size: 15px; font-weight: 700; max-width: 340px; line-height: 1.7; }
+  .ft-desc { font-size: 15px; font-weight: 400; max-width: 340px; line-height: 1.7; }
   .ft-col h4 { color: #fff; font-size: 14px; text-transform: uppercase; letter-spacing: 0.12em; margin-bottom: 20px; font-weight: 600; }
   .ft-col ul { list-style: none; display: flex; flex-direction: column; gap: 13px; }
   .ft-col a, .ft-col li { font-size: 15px; color: rgba(255,255,255,0.7); transition: color .15s ease; }
@@ -702,9 +711,9 @@
     /* Why us */
     .why-grid { gap: 24px; }
 
-    /* Gallery grid */
-    div[style*="grid-template-columns:repeat(3,1fr)"] { grid-template-columns: 1fr 1fr !important; gap: 10px !important; }
-    div[style*="grid-template-columns:repeat(3,1fr)"] img { height: 160px !important; }
+    /* Gallery */
+    #gallery-grid { columns: 2; column-gap: 10px; }
+    #gallery-grid img { margin-bottom: 10px; }
 
     /* Testimonials */
     .cards-4 { grid-template-columns: 1fr; }
@@ -786,8 +795,8 @@
         </div>
         <h3>Day Care</h3>
         <div class="price">R120<span>/day</span></div>
-        <a class="btn btn-primary" href="https://wa.me/27711172998?text=Hi%20there%2C%20I%27m%20interested%20in%20your%20Day%20Care%20service." target="_blank" rel="noopener" style="width:100%;justify-content:center;">Enquire about Daycare</a>
         <p>Supervised play and socialising, with indoor and outdoor space.</p>
+        <a class="btn btn-primary" href="https://wa.me/27711172998?text=Hi%20there%2C%20I%27m%20interested%20in%20your%20Day%20Care%20service." target="_blank" rel="noopener" style="width:100%;justify-content:center;">Enquire about Daycare</a>
       </article>
       <article class="card" role="listitem">
         <div class="icon-badge" aria-hidden="true" style="background:transparent;height:110px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
@@ -795,8 +804,8 @@
         </div>
         <h3>Boarding</h3>
         <div class="price">R200<span>/24hrs</span></div>
-        <a class="btn btn-primary" href="https://wa.me/27711172998?text=Hi%20there%2C%20I%27m%20interested%20in%20your%20Boarding%20service." target="_blank" rel="noopener" style="width:100%;justify-content:center;">Enquire about Boarding</a>
         <p>A cosy 24-hour stay with supervised care, day and night.</p>
+        <a class="btn btn-primary" href="https://wa.me/27711172998?text=Hi%20there%2C%20I%27m%20interested%20in%20your%20Boarding%20service." target="_blank" rel="noopener" style="width:100%;justify-content:center;">Enquire about Boarding</a>
       </article>
       <article class="card" role="listitem">
         <div class="icon-badge" aria-hidden="true" style="background:transparent;height:110px;display:flex;align-items:center;justify-content:center;margin:0 auto 16px;">
@@ -804,8 +813,8 @@
         </div>
         <h3>Long Stay Boarding</h3>
         <div class="price">Custom Rate</div>
-        <a class="btn btn-primary" href="https://wa.me/27711172998?text=Hi%20there%2C%20I%27m%20interested%20in%20Long%20Stay%20Boarding%20for%20my%20dog." target="_blank" rel="noopener" style="width:100%;justify-content:center;">Get a Quote</a>
         <p>Flexible rates for extended stays and multiple dogs.</p>
+        <a class="btn btn-primary" href="https://wa.me/27711172998?text=Hi%20there%2C%20I%27m%20interested%20in%20Long%20Stay%20Boarding%20for%20my%20dog." target="_blank" rel="noopener" style="width:100%;justify-content:center;">Get a Quote</a>
       </article>
     </div>
   </div>
@@ -841,7 +850,7 @@
 <section class="block" id="why-us" aria-labelledby="why-heading">
   <div class="wrap">
     <div class="why-grid fade-up">
-      <img src="images/why-us.webp" width="1000" height="750" alt="Group of dogs socialising and playing in the safe outdoor garden at Waterkloof Dog Daycare, Pretoria" style="width:100%;aspect-ratio:4/3.4;object-fit:cover;border-radius:24px;border:1px solid var(--border);">
+      <img src="images/why-us.webp" width="1000" height="750" alt="Group of dogs socialising and playing in the safe outdoor garden at Waterkloof Dog Daycare, Pretoria" style="width:100%;aspect-ratio:4/3.4;object-fit:cover;border-radius:16px;border:1px solid var(--border);">
       <div>
         <h2 class="section-title" id="why-heading" style="margin-bottom:34px;">Why Choose Us?</h2>
         <div class="why-list">
@@ -873,22 +882,22 @@
     <div class="head-center">
       <h2 class="section-title" id="gallery-heading">Meet Our Happy Guests</h2>
     </div>
-    <div id="gallery-grid" style="display:grid;grid-template-columns:repeat(3,1fr);gap:16px;" role="list" aria-label="Photo gallery of dogs at Waterkloof Dog Daycare">
-      <img class="fade-up" loading="eager" decoding="async" src="images/gallery-01.webp" width="457" height="720" alt="Husky and tan mixed breed dog running on the green lawn at Waterkloof Dog Daycare, Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="eager" decoding="async" src="images/gallery-02.webp" width="540" height="720" alt="Group of cattle dogs, border collie and golden retriever playing on the garden path at dog daycare in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="eager" decoding="async" src="images/gallery-03.webp" width="720" height="540" alt="Seven dogs including white Swiss Shepherd, husky and Labrador gathered on brick patio at Waterkloof Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-04.webp" width="540" height="720" alt="Friendly Labrador and mixed breed dogs greeting the camera at dog daycare in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-05.webp" width="720" height="540" alt="Golden retriever, German Shepherd and border collie with tennis ball at Waterkloof Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-06.webp" width="540" height="720" alt="Dogs playing with a rugby ball on the covered patio at Waterkloof Dog Daycare Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-07.webp" width="540" height="720" alt="German Shepherd, white Swiss Shepherd, cattle dog and Jack Russell relaxing on patio at Waterkloof Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-08.webp" width="540" height="720" alt="Close-up portrait of a smiling white Swiss Shepherd at Waterkloof Dog Daycare in Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-09.webp" width="720" height="540" alt="Dogs in a secure fenced play area with lush garden at Waterkloof Ridge dog boarding, Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-10.webp" width="540" height="720" alt="German Shepherd close-up holding a rubber chicken toy at Waterkloof Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-11.webp" width="720" height="540" alt="Dogs with tennis balls on grass including Saint Bernard and golden retrievers at Waterkloof Ridge daycare" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-12.webp" width="540" height="720" alt="Dogs celebrating a birthday with a chalkboard sign and tennis balls at Waterkloof Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-13.webp" width="540" height="720" alt="Border Collie mix wearing festive reindeer antlers on the grass at Waterkloof Dog Daycare" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-14.webp" width="720" height="627" alt="Vizsla, German Shorthaired Pointer and Staffy sitting on grass at dog daycare in Pretoria" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
-      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-15.webp" width="540" height="720" alt="Saint Bernard and white Swiss Shepherd standing under leafy plants at dog boarding in Waterkloof Ridge" style="width:100%;height:220px;object-fit:cover;border-radius:24px;cursor:pointer;" onclick="openLb(this)" role="listitem">
+    <div id="gallery-grid" style="columns:3;column-gap:16px;" role="list" aria-label="Photo gallery of dogs at Waterkloof Dog Daycare">
+      <img class="fade-up" loading="eager" decoding="async" src="images/gallery-01.webp" width="457" height="720" alt="Husky and tan mixed breed dog running on the green lawn at Waterkloof Dog Daycare, Pretoria" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="eager" decoding="async" src="images/gallery-02.webp" width="540" height="720" alt="Group of cattle dogs, border collie and golden retriever playing on the garden path at dog daycare in Waterkloof Ridge" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="eager" decoding="async" src="images/gallery-03.webp" width="720" height="540" alt="Seven dogs including white Swiss Shepherd, husky and Labrador gathered on brick patio at Waterkloof Dog Daycare" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-04.webp" width="540" height="720" alt="Friendly Labrador and mixed breed dogs greeting the camera at dog daycare in Waterkloof Ridge" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-05.webp" width="720" height="540" alt="Golden retriever, German Shepherd and border collie with tennis ball at Waterkloof Dog Daycare" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-06.webp" width="540" height="720" alt="Dogs playing with a rugby ball on the covered patio at Waterkloof Dog Daycare Pretoria" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-07.webp" width="540" height="720" alt="German Shepherd, white Swiss Shepherd, cattle dog and Jack Russell relaxing on patio at Waterkloof Dog Daycare" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-08.webp" width="540" height="720" alt="Close-up portrait of a smiling white Swiss Shepherd at Waterkloof Dog Daycare in Pretoria" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-09.webp" width="720" height="540" alt="Dogs in a secure fenced play area with lush garden at Waterkloof Ridge dog boarding, Pretoria" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-10.webp" width="540" height="720" alt="German Shepherd close-up holding a rubber chicken toy at Waterkloof Dog Daycare" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-11.webp" width="720" height="540" alt="Dogs with tennis balls on grass including Saint Bernard and golden retrievers at Waterkloof Ridge daycare" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-12.webp" width="540" height="720" alt="Dogs celebrating a birthday with a chalkboard sign and tennis balls at Waterkloof Dog Daycare" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-13.webp" width="540" height="720" alt="Border Collie mix wearing festive reindeer antlers on the grass at Waterkloof Dog Daycare" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-14.webp" width="720" height="627" alt="Vizsla, German Shorthaired Pointer and Staffy sitting on grass at dog daycare in Pretoria" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
+      <img class="fade-up" loading="lazy" decoding="async" src="images/gallery-15.webp" width="540" height="720" alt="Saint Bernard and white Swiss Shepherd standing under leafy plants at dog boarding in Waterkloof Ridge" style="width:100%;height:auto;border-radius:16px;cursor:pointer;display:block;margin-bottom:16px;break-inside:avoid;" onclick="openLb(this)" role="listitem">
     </div>
   </div>
 </section>
@@ -1064,7 +1073,7 @@ function closeMenu() {
 </section>
 
 <!-- ============ FAQ ============ -->
-<section class="block" aria-labelledby="faq-heading">
+<section class="block alt" aria-labelledby="faq-heading">
   <div class="wrap">
     <div class="head-center">
       <h2 class="section-title" id="faq-heading">Frequently Asked Questions</h2>
@@ -1076,7 +1085,7 @@ function closeMenu() {
           How much does dog daycare cost in Waterkloof Ridge?
           <span style="font-size:22px;color:var(--navy);flex-shrink:0;margin-left:12px;">+</span>
         </summary>
-        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:700;">Dog daycare is <strong>R120 per day</strong>. Includes supervised group play, outdoor and indoor space, and no hidden fees.</p>
+        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:400;">Dog daycare is <strong>R120 per day</strong>. Includes supervised group play, outdoor and indoor space, and no hidden fees.</p>
       </details>
 
       <details style="border-top:1px solid var(--border);padding:20px 0;">
@@ -1084,7 +1093,7 @@ function closeMenu() {
           How much does dog boarding cost in Pretoria?
           <span style="font-size:22px;color:var(--navy);flex-shrink:0;margin-left:12px;">+</span>
         </summary>
-        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:700;">Boarding is <strong>R200 per 24 hours</strong>, day and night included. Discounts for long stays and multiple dogs available. <a href="https://wa.me/27711172998" style="color:var(--navy);">WhatsApp us</a> for a quote.</p>
+        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:400;">Boarding is <strong>R200 per 24 hours</strong>, day and night included. Discounts for long stays and multiple dogs available. <a href="https://wa.me/27711172998" style="color:var(--navy);">WhatsApp us</a> for a quote.</p>
       </details>
 
       <details style="border-top:1px solid var(--border);padding:20px 0;">
@@ -1092,7 +1101,7 @@ function closeMenu() {
           What days and hours are you open?
           <span style="font-size:22px;color:var(--navy);flex-shrink:0;margin-left:12px;">+</span>
         </summary>
-        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:700;">We are open <strong>7 days a week, including weekends and public holidays</strong>, from <strong>07:00 to 18:00</strong>.</p>
+        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:400;">We are open <strong>7 days a week, including weekends and public holidays</strong>, from <strong>07:00 to 18:00</strong>.</p>
       </details>
 
       <details style="border-top:1px solid var(--border);padding:20px 0;">
@@ -1100,7 +1109,7 @@ function closeMenu() {
           Is my dog safe at daycare?
           <span style="font-size:22px;color:var(--navy);flex-shrink:0;margin-left:12px;">+</span>
         </summary>
-        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:700;">Yes. All dogs are supervised in a <strong>fully fenced property</strong>. We do a meet and greet before any dog joins to keep the group safe and compatible.</p>
+        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:400;">Yes. All dogs are supervised in a <strong>fully fenced property</strong>. We do a meet and greet before any dog joins to keep the group safe and compatible.</p>
       </details>
 
       <details style="border-top:1px solid var(--border);padding:20px 0;">
@@ -1108,7 +1117,7 @@ function closeMenu() {
           How do I book a spot?
           <span style="font-size:22px;color:var(--navy);flex-shrink:0;margin-left:12px;">+</span>
         </summary>
-        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:700;"><a href="https://wa.me/27711172998" style="color:var(--navy);">WhatsApp us</a> or call <a href="tel:+27711172998" style="color:var(--navy);">071 117 2998</a> to check availability. We'll set up a meet and greet before your dog's first day.</p>
+        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:400;"><a href="https://wa.me/27711172998" style="color:var(--navy);">WhatsApp us</a> or call <a href="tel:+27711172998" style="color:var(--navy);">071 117 2998</a> to check availability. We'll set up a meet and greet before your dog's first day.</p>
       </details>
 
       <details style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);padding:20px 0;">
@@ -1116,7 +1125,7 @@ function closeMenu() {
           Where are you located?
           <span style="font-size:22px;color:var(--navy);flex-shrink:0;margin-left:12px;">+</span>
         </summary>
-        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:700;">We are located in <strong>Waterkloof Ridge, Pretoria, Gauteng (0181)</strong>. Contact us for the exact address once you've booked your meet and greet.</p>
+        <p style="margin-top:12px;color:var(--muted);line-height:1.7;font-weight:400;">We are located in <strong>Waterkloof Ridge, Pretoria, Gauteng (0181)</strong>. Contact us for the exact address once you've booked your meet and greet.</p>
       </details>
 
     </div>
